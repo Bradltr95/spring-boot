@@ -5,7 +5,7 @@ import java.util.Objects;
 public class SoftwareEngineer { // We omit the toString as we will be using spring JPA
     private Integer id;
     private String name;
-    private String techStack;
+    private String techStack; // To avoid a Many-to-1 relationship at this time we will use a String instead of a List.
 
     public SoftwareEngineer() { // No struct constructor
     }
