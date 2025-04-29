@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="SoftwareEngineerTestSuite">
+    <parameter name="baseUrl" value="https://jsonplaceholder.typicode.com"/>
+    <test name="GetUserBret">
+        <classes>
+            <class name="com.bradltr95.SoftwareEngineerTest"/>
+            <class name="com.bradltr95.SoftwareEngineerControllerTest"/>
+        </classes>
+    </test>
+</suite>
