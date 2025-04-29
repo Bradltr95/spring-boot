@@ -23,6 +23,9 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	runtimeOnly 'org.postgresql:postgresql'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	// Both versions of RestAssured and TestNG were chosen because they are LTS.
+	testImplementation 'io.rest-assured:rest-assured:5.4.0'
+	testImplementation 'org.testng:testng:7.9.0'
 }
 
 tasks.named('test') {
