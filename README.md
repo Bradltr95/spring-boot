@@ -46,14 +46,18 @@ This is a Spring Boot application designed to manage software engineers and thei
 Run the tests using Gradle:
 
 ```bash
-./gradlew test
+./gradlew clean test -Psuite=SoftwareEngineerTestSuite_test.xml
 ```
+
+All tests will be automatically run by the github workflow under /.github/workflows/pipeline.yml during a merge or PR.
 
 ## Project Structure
 - **src/main/java:** Application source code.
-- **src/test/java:** Unit and integration tests.
+- **src/test/java:** Unit and integration tests run with TestNG and written using RestAssured.
+- **src/test/resources:** The TestNG test suites.
 - **docker-compose.yml:** Docker configuration for PostgreSQL.
 - **src/main/resources/application.properties:** Application configuration.
+- **/build.gradle:** The build settings where we define depenencies, plugins, testing and linting.
 
 ## License
 This project is licensed under the MIT License.
