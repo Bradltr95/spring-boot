@@ -36,7 +36,7 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Validate code formatting and verify it
-          run: |
+        run: |
           ./gradlew spotlessApply
           ./gradlew spotlessCheck
 
