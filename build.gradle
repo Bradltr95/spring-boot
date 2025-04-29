@@ -2,6 +2,7 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.4.5'
 	id 'io.spring.dependency-management' version '1.1.7'
+	id 'com.diffplug.spotless' version '6.25.0'
 }
 
 group = 'com.bradltr95'
@@ -23,8 +24,19 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	runtimeOnly 'org.postgresql:postgresql'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	// Both versions of RestAssured and TestNG were chosen because they are LTS.
+	testImplementation 'io.rest-assured:rest-assured:5.4.0'
+	testImplementation 'org.testng:testng:7.9.0'
 }
 
-tasks.named('test') {
-	useJUnitPlatform()
+test {
+	if (project.hasProperty('suite')) {
+		useTestNG {
+			suites "src/text/resources/${project.suite}"
+		}
+	}
+}
+
+tasks.named("check").configure {
+	dependsOn "spotlessCheck"
 }
