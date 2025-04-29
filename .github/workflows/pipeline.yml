@@ -32,5 +32,13 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
+      - name: Grant execute permission for Gradle wrapper
+        run: chmod +x ./gradlew
+
+      - name: Validate code formatting and verify it
+          run: |
+          ./gradlew spotlessApply
+          ./gradlew spotlessCheck
+
       - name: Build and Test
         run: ./gradlew clean test -Psuite=SoftwareEngineerTestSuite_test.xml
