@@ -6,6 +6,7 @@ services:
       POSTGRES_USER: bradltr
       POSTGRES_PASSWORD: password
       PGDATA: /data/postgres
+      POSTGRES_DB: engineers
     volumes:
       - db:/data/postgres
     ports:
