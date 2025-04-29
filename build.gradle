@@ -28,6 +28,10 @@ dependencies {
 	testImplementation 'org.testng:testng:7.9.0'
 }
 
-tasks.named('test') {
-	useJUnitPlatform()
+test {
+	if (project.hasProperty('suite')) {
+		useTestNG {
+			suites "src/text/resources/${project.suite}"
+		}
+	}
 }
