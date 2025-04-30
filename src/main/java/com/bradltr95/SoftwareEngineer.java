@@ -1,8 +1,18 @@
 package com.bradltr95;
 
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
 import java.util.Objects;
 
+@Entity
 public class SoftwareEngineer { // We omit the toString as we will be using spring JPA
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
     private String techStack; // To avoid a Many-to-1 relationship at this time we will use a String instead of a List.
