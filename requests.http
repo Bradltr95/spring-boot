@@ -3,3 +3,12 @@ GET http://localhost:8080
 
 ###
 GET http://localhost:8080/api/v1/software-engineers
+
+### Send POST request with json body
+POST http://localhost:8080/api/v1/software-engineers
+Content-Type: application/json
+
+{
+    "name": "Jamila",
+    "techStack": "java, spring boot, spring"
+}
