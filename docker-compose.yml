@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   db:
     container_name: postgres-spring-boot
@@ -12,32 +14,31 @@ services:
     ports:
       - "5332:5432"
     networks:
-      - db
+      - app-network
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "bradltr"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
   app:
-      build: .
-      ports:
-        - "8080:8080"
-      healthcheck:
-        test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
-        interval: 10s
-        timeout: 5s
-        retries: 5
-    db:
-      image: postgres:latest
-      environment:
-        POSTGRES_USER: user
-        POSTGRES_PASSWORD: password
-      ports:
-        - "5432:5432"
-      healthcheck:
-        test: ["CMD", "pg_isready", "-U", "user"]
-        interval: 10s
-        timeout: 5s
-        retries: 5
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
 networks:
-  db:
+  app-network:
     driver: bridge
 
 volumes:
