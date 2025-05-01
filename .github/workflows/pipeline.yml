@@ -65,5 +65,11 @@ jobs:
       - name: Wait for services to be ready
         run: sleep 30
 
+      - name: Check application health
+        run: |
+          for i in {1..10}; do
+            curl -f http://localhost:8080/actuator/health && break || sleep 5;
+          done
+
       - name: Run Test
         run: ./gradlew clean test -Psuite=SoftwareEngineerTestSuite_test.xml
