@@ -40,5 +40,11 @@ jobs:
           ./gradlew spotlessApply
           ./gradlew spotlessCheck
 
+      - name: Set up Docker Compose
+        run: docker-compose up -d
+
+      - name: Wait for services to be ready
+        run: sleep 10
+
       - name: Build and Test
         run: ./gradlew clean test -Psuite=SoftwareEngineerTestSuite_test.xml
