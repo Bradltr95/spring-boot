@@ -1,5 +1,7 @@
 package com.bradltr95;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,5 +29,11 @@ public class SoftwareEngineerController {
     @PostMapping
     public void addNewSoftwareEngineer(@RequestBody SoftwareEngineer engineer) {
         softwareEngineerService.insertSoftwareEngineer(engineer);
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<HttpStatus> deleteSoftwareEngineer(@PathVariable Integer id) {
+        softwareEngineerService.deleteSoftwareEngineer(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

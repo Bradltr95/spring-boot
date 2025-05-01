@@ -33,7 +33,7 @@ dependencies {
 test {
 	if (project.hasProperty('suite')) {
 		useTestNG {
-			suites "src/text/resources/${project.suite}"
+			suites "src/test/resources/${project.suite}"
 		}
 	}
 }
