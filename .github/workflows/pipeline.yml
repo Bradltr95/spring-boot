@@ -41,7 +41,7 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Build the Application
-        run: ./gradlew clean test -Psuite=SoftwareEngineerTestSuite_test.xml
+        run: ./gradlew clean build
 
       - name: Validate code formatting and verify it
         run: |
