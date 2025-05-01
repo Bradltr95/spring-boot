@@ -5,7 +5,7 @@ FROM eclipse-temurin:21-jdk-alpine
 WORKDIR /app
 
 # Copy the built JAR file from the Gradle build output
-COPY build/libs/spring-boot-0.0.1-SNAPSHOT.jar
+COPY build/libs/spring-boot-0.0.1-SNAPSHOT.jar app.jar
 
 # Expose the application port
 EXPOSE 8080
