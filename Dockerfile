@@ -7,6 +7,9 @@ WORKDIR /app
 # Copy the built JAR file from the Gradle build output
 COPY build/libs/spring-boot-0.0.1-SNAPSHOT.jar app.jar
 
+# This copy is a brute force attempt to copy the entire build rather than just the single jar
+#COPY . .
+
 # Expose the application port
 EXPOSE 8080
 

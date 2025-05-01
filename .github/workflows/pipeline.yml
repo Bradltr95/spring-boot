@@ -62,14 +62,18 @@ jobs:
       - name: Set up Docker Compose
         run: docker-compose up -d
 
-      - name: Wait for services to be ready
-        run: sleep 30
-
-      - name: Check application health
+      - name: Check application and database health
         run: |
-          for i in {1..10}; do
-            curl -f http://localhost:8080/actuator/health && break || sleep 5;
+          for i in {1..20}; do
+            curl -f http://localhost:8080/actuator/health | grep '"db":{"status":"UP"}' && break || sleep 5;
           done
 
       - name: Run Test
-        run: ./gradlew clean test -Psuite=SoftwareEngineerTestSuite_test.xml
+        run: ./gradlew clean test -Psuite=SoftwareEngineerTestSuite_test.xml --stacktrace --info
+
+      - name: Upload test reports
+        if: failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-reports
+          path: build/reports/tests/test/
