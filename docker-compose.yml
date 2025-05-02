@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   db:
     container_name: postgres-spring-boot
@@ -12,11 +14,36 @@ services:
     ports:
       - "5332:5432"
     networks:
-      - db
+      - app-network
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "bradltr"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/engineers
+      - SPRING_DATASOURCE_USERNAME=bradltr
+      - SPRING_DATASOURCE_PASSWORD=password
+      - APP_URL=http://localhost:8080
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
 networks:
-  db:
+  app-network:
     driver: bridge
 
 volumes:

@@ -9,6 +9,12 @@ POST http://localhost:8080/api/v1/software-engineers
 Content-Type: application/json
 
 {
-    "name": "Jamila",
+    "name": "Alex",
     "techStack": "java, spring boot, spring"
 }
+
+### After submitting the Post request to create a record retrieve it by Id
+GET http://localhost:8080/api/v1/software-engineers/1
+
+### Delete software engineer by Id
+DELETE http://localhost:8080/api/v1/software-engineers/1
