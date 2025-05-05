@@ -21,7 +21,10 @@ public class SoftwareEngineerService {
                 .orElseThrow(() -> new IllegalStateException(id + "not found"));
     }
 
-    public void insertSoftwareEngineer(SoftwareEngineer engineer) {
+    /* saveSoftwareEngineer - If the ID for the engineer that is provided
+    exists in the database than an update while occur. If the ID does not exist then
+    a new record will be created */
+    public void saveSoftwareEngineer(SoftwareEngineer engineer) {
         softwareEngineerRepository.save(engineer);
     }
 
