@@ -28,12 +28,17 @@ public class SoftwareEngineerController {
 
     @PostMapping
     public void addNewSoftwareEngineer(@RequestBody SoftwareEngineer engineer) {
-        softwareEngineerService.insertSoftwareEngineer(engineer);
+        softwareEngineerService.saveSoftwareEngineer(engineer);
     }
 
     @DeleteMapping("{id}")
     public ResponseEntity<HttpStatus> deleteSoftwareEngineer(@PathVariable Integer id) {
         softwareEngineerService.deleteSoftwareEngineer(id);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PutMapping("{id}")
+    public void saveSoftwareEngineer(@PathVariable Integer id, @RequestBody SoftwareEngineer engineer) {
+        softwareEngineerService.saveSoftwareEngineer(engineer);
     }
 }
