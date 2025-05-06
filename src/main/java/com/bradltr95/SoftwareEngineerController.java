@@ -28,7 +28,7 @@ public class SoftwareEngineerController {
 
     @PostMapping
     public void addNewSoftwareEngineer(@RequestBody SoftwareEngineer engineer) {
-        softwareEngineerService.insertSoftwareEngineer(engineer);
+        softwareEngineerService.saveSoftwareEngineer(engineer);
     }
 
     @DeleteMapping("{id}")
@@ -38,7 +38,7 @@ public class SoftwareEngineerController {
     }
 
     @PutMapping("{id}")
-    public void updateSoftwareEngineer(@PathVariable Integer id, @RequestBody SoftwareEngineer engineer) {
-        softwareEngineerService.updateSoftwareEngineer(engineer);
+    public void saveSoftwareEngineer(@PathVariable Integer id, @RequestBody SoftwareEngineer engineer) {
+        softwareEngineerService.saveSoftwareEngineer(engineer);
     }
 }
